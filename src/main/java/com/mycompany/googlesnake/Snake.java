@@ -109,7 +109,8 @@ public class Snake {
             this.currentAngle = 0; 
           
             try{
-                image = ImageIO.read(new File("C:\\Autodesk\\NetBeansProjects\\SnakeGame\\src\\main\\java\\Resources\\snakeHead.png"));
+                image = ImageIO.read(new File("SnakeHead.png"));
+                // image = ImageIO.read(new File("C:\\Autodesk\\NetBeansProjects\\SnakeGame\\src\\main\\java\\Resources\\snakeHead.png"));
             } catch (IOException ex) {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
