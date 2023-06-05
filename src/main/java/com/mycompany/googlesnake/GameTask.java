@@ -57,13 +57,13 @@ public class GameTask {
         //check if the move works (ie right to left, up to down doesn't work)
         Boolean moveWorks = Snake.moveWorks(move, currentMove);
         System.out.println(isFirstMove);
-        // if(isFirstMove){
-        //     if(move != Move.LEFT){
-        //         oldMove = Move.RIGHT; 
-        //         currentMove = move; 
-        //         isFirstMove = false; 
-        //     }
-        // }
+        if(isFirstMove){
+            if(move != Move.LEFT){
+                oldMove = Move.RIGHT; 
+                currentMove = move; 
+                isFirstMove = false; 
+            }
+        }
         if((move != currentMove && moveWorks || currentMove == null)){
             currentMove = move; 
             if(oldMove == null){
