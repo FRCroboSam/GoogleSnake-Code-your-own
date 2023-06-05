@@ -18,6 +18,21 @@ public class TileCords {
         int y= GameParams.TOP_LEFT_BOARD_POINT.y + row * GameParams.TILE_WIDTH; 
         return new Point(x, y);
     }
+
+    public static Point calculateRowCol(int x, int y){
+        int row = (y - GameParams.TOP_LEFT_BOARD_POINT.y) / GameParams.TILE_WIDTH; 
+        int col = (x - GameParams.TOP_LEFT_BOARD_POINT.y) / GameParams.TILE_WIDTH; 
+        return new Point(row, col); 
+    }
+    
+
+    public static Point calculateSnakeHeadRowColumn(int x, int y){
+        System.out.println("Y IS: " + y);
+        int col = Math.abs(x - GameParams.TOP_LEFT_BOARD_POINT.x) / GameParams.TILE_WIDTH;
+        int row = Math.abs(y - GameParams.TOP_LEFT_BOARD_POINT.y) / GameParams.TILE_WIDTH;
+        return new Point(row, col);
+    }
+
     public static Point calculateSnakeHeadCords(int row, int col, int imageWidth, int imageHeight, Move move){
         Point topLeft = calculatePixelCords(row, col);
         //calculate the middle of line where the neck intersects the tile 

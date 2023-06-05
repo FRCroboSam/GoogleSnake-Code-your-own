@@ -9,6 +9,7 @@ import com.mycompany.googlesnake.GameParams;
 import com.mycompany.googlesnake.GameTask;
 import com.mycompany.googlesnake.TileCords;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -54,8 +55,14 @@ public class GamePanel extends javax.swing.JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         drawBoard(g); 
-        
         snake.drawSnake(g); 
+        if(snake.gameOver){
+            Font stringFont = new Font( "SansSerif", Font.PLAIN, 40 );
+            g.setFont(stringFont); 
+            g.setColor(Color.BLACK);
+            g.drawString("Game Over", 250, 250);
+            g.drawString("Score: " + snake.score, 300, 300);
+        }
         
 
         
@@ -64,6 +71,7 @@ public class GamePanel extends javax.swing.JPanel {
 
         
     }
+    
     public void drawBoard(Graphics g){
         Color lastTileColor = Color.GREEN; 
         for(int row = 0; row < GameParams.NUM_ROWS; row++){
@@ -118,7 +126,6 @@ public class GamePanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 //do nothing
                 GameTask.setCurrentMove(Move.LEFT);
-                snake.rotate(Move.LEFT); 
             }
         };  
         Action right = new AbstractAction() {
@@ -126,7 +133,6 @@ public class GamePanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 //do nothing
                 GameTask.setCurrentMove(Move.RIGHT);
-                snake.rotate(Move.RIGHT); 
                 
             }
         };
@@ -135,7 +141,6 @@ public class GamePanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 //do nothing
                 GameTask.setCurrentMove(Move.UP);
-                snake.rotate(Move.UP); 
             }
         };
         Action down = new AbstractAction() {
@@ -143,7 +148,6 @@ public class GamePanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 //do nothing
                 GameTask.setCurrentMove(Move.DOWN);
-                snake.rotate(Move.DOWN); 
             }
         };
         this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");

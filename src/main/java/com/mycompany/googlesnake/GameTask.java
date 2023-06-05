@@ -10,7 +10,9 @@ package com.mycompany.googlesnake;
 public class GameTask {
     State currentState; 
     private static Move currentMove = null;
+    static boolean isFirstMove = true; 
     int score; 
+    private static Move oldMove = null; 
     boolean appleOnMap; 
     public enum State{
         INITIAL_SPAWN, SPAWN_APPLE, GAME_OVER, CHASING_APPLE
@@ -19,10 +21,18 @@ public class GameTask {
         LEFT, RIGHT, UP, DOWN
     }
     public void run(Snake snake){
-
-        if(currentMove != null){
+        // System.out.println(oldMove == null);
+        if(oldMove != null && currentMove != null){
             snake.move(currentMove);
         }
+        if(oldMove != currentMove && oldMove != null){
+            System.out.println("ROTATING from OLDMOVE: " + oldMove + " newMOVe: " + currentMove); 
+            snake.rotate(currentMove, oldMove);
+            oldMove = currentMove; 
+            
+        }
+        oldMove = currentMove; 
+
         
     //logic:
     //if(apple not on map) - > call snake.spawnApple(), in snake class, it 
@@ -44,9 +54,25 @@ public class GameTask {
 //        }
     }
     public static void setCurrentMove(Move move){
-        if(move != currentMove){
+        //check if the move works (ie right to left, up to down doesn't work)
+        Boolean moveWorks = Snake.moveWorks(move, currentMove);
+        System.out.println(isFirstMove);
+        // if(isFirstMove){
+        //     if(move != Move.LEFT){
+        //         oldMove = Move.RIGHT; 
+        //         currentMove = move; 
+        //         isFirstMove = false; 
+        //     }
+        // }
+        if((move != currentMove && moveWorks || currentMove == null)){
             currentMove = move; 
+            if(oldMove == null){
+                oldMove = move; 
+            }
         }
+        
     }
+    //oldMove == nu
 
 }
+//start -> oldMove is right 

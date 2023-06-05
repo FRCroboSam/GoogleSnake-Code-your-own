@@ -18,11 +18,12 @@ public class GoogleSnake {
         frame.setSnake(snake);
         frame.setName("Game Panel 1");
         frame.run(); 
-
+        //spawnApple for beginning of the 
+        snake.spawnApple(); 
         GameTask task = new GameTask();
-        while(true){
+        while(true && !snake.checkGameOver()){
             task.run(snake);
-            Thread.sleep(10);
+            Thread.sleep(500);
         }
     }
 }
