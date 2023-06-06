@@ -79,7 +79,7 @@ public class GamePanel extends javax.swing.JPanel {
         Font stringFont = new Font( "SansSerif", Font.BOLD, 40 );
         g.setFont(stringFont); 
         g.setColor(Color.BLACK);
-        g.drawString("Leaderboards", 400, 300);
+        g.drawString("Leaderboards", 500, 150);
         int y = 300; 
         for (Map.Entry<String, Integer> entry : snake.scoreBoard.entrySet()) {
             String key = entry.getKey();
