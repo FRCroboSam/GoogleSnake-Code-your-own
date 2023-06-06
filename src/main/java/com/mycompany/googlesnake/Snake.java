@@ -51,6 +51,12 @@ public class Snake {
         String fileName = "leaderboard.txt"; 
         try
         {  
+            File tempFile = new File("leaderboard.txt");
+            if (tempFile.createNewFile()) {
+                System.out.println("File created: " );
+              } else {
+                System.out.println("File already exists.");
+              }
             FileInputStream file = new FileInputStream
                                          (fileName);
             ObjectInputStream in = new ObjectInputStream(file); 
