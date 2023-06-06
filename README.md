@@ -1,12 +1,13 @@
 # GoogleSnake Create Your Own Project AP CS A
 Team: Samuel Wang
-Version: Java 17
+Pre-req: Java 17
 
 How to
-- press arrow keys(not left) to start playing, dies when the snake head hits itself or the snake travels out of bounds 
+- press arrow keys(not left) to start playing
+- Game over when the snake head hits itself (blue snake body) or the snake travels out of bounds (the checkerboard)
 
 Purpose
-- Play Snake!
+- Play Snake with arrow keys, eat the apples (red boxes) to increase score
 
 Reqs
 - User input: arrow keys, entering name to save score
