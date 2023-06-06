@@ -19,12 +19,14 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
+import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import org.imgscalr.Scalr;
 
@@ -35,6 +37,7 @@ import org.imgscalr.Scalr;
 public class GamePanel extends javax.swing.JPanel {
 
     private static Snake snake; 
+    public static JTextArea editTextArea = new JTextArea("Type Here!");
 
     /**
      * Creates new form GamePanel
@@ -57,11 +60,12 @@ public class GamePanel extends javax.swing.JPanel {
         drawBoard(g); 
         snake.drawSnake(g); 
         if(snake.gameOver){
-            Font stringFont = new Font( "SansSerif", Font.PLAIN, 40 );
+            Font stringFont = new Font( "SansSerif", Font.BOLD, 40 );
             g.setFont(stringFont); 
             g.setColor(Color.BLACK);
             g.drawString("Game Over", 250, 250);
-            g.drawString("Score: " + snake.score, 300, 300);
+            drawLeaderboard(g); 
+
         }
         
 
@@ -71,7 +75,21 @@ public class GamePanel extends javax.swing.JPanel {
 
         
     }
-    
+    public void drawLeaderboard(Graphics g){
+        Font stringFont = new Font( "SansSerif", Font.BOLD, 40 );
+        g.setFont(stringFont); 
+        g.setColor(Color.BLACK);
+        g.drawString("Leaderboards", 400, 300);
+        int y = 300; 
+        for (Map.Entry<String, Integer> entry : snake.scoreBoard.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            y+=50; 
+            g.drawString(key + ": "  + value, 400, y);
+        }
+        g.drawString("Your Score: " + snake.score, 400, y + 50);
+        
+    }
     public void drawBoard(Graphics g){
         Color lastTileColor = Color.GREEN; 
         for(int row = 0; row < GameParams.NUM_ROWS; row++){

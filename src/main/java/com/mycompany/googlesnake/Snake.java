@@ -13,7 +13,11 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage; 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -43,6 +47,37 @@ public class Snake {
     boolean waitingForTurn = false; 
     //snake spawns with length = 1, 1 head and one tail 
     public Snake(){
+        //fetch the leaderboard 
+        String fileName = "leaderboard.txt"; 
+        try
+        {  
+            FileInputStream file = new FileInputStream
+                                         (fileName);
+            ObjectInputStream in = new ObjectInputStream(file); 
+ 
+            // Method for deserialization of object
+            scoreBoard = (HashMap<String, Integer>)in.readObject();
+ 
+            in.close();
+            file.close();
+            System.out.println("Object has been deserialized\n"
+                                + "Data after Deserialization.");
+ 
+            // System.out.println("z = " + object1.z);
+ 
+        }
+        catch (IOException ex) {
+            System.out.println("IOException is caught");
+        }
+ 
+        catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException" +
+                                " is caught");
+        }
+        if(scoreBoard == null){
+            scoreBoard = new HashMap<>(); 
+        }
+
         currentMove = Move.RIGHT; 
         lengths = new ArrayList<>(); 
         head = new SnakeHead(GameParams.SNAKE_HEAD_POINT.x, GameParams.SNAKE_HEAD_POINT.y); 

@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.googlesnake;
+
+import java.util.HashMap;
+
 /**
  *
  * @author samue
@@ -13,6 +16,7 @@ public class GameTask {
     static boolean isFirstMove = true; 
     int score; 
     private static Move oldMove = null; 
+    HashMap<String, Integer> leaderboard; 
     boolean appleOnMap; 
     public enum State{
         INITIAL_SPAWN, SPAWN_APPLE, GAME_OVER, CHASING_APPLE
