@@ -48,10 +48,10 @@ public class Snake {
     //snake spawns with length = 1, 1 head and one tail 
     public Snake(){
         //fetch the leaderboard 
-        String fileName = "leaderboard.txt"; 
+        String fileName = "leaderboard.ser"; 
         try
         {  
-            File tempFile = new File("leaderboard.txt");
+            File tempFile = new File("leaderboard.ser");
             if (tempFile.createNewFile()) {
                 System.out.println("File created: " );
               } else {

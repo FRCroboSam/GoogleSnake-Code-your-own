@@ -27,7 +27,7 @@ public class GoogleSnake {
         GameTask task = new GameTask();
         while(true && !snake.checkGameOver()){
             task.run(snake);
-            Thread.sleep(500);
+            Thread.sleep(250);
         }
         String name = Utils.input("Enter a name for the score: ");
         snake.scoreBoard.put(name, snake.score);
@@ -37,7 +37,7 @@ public class GoogleSnake {
         try {
  
             // Saving of object in a file
-            String fileName = "leaderboard.txt";
+            String fileName = "leaderboard.ser";
             FileOutputStream file = new FileOutputStream
                                            (fileName);
             ObjectOutputStream out = new ObjectOutputStream
