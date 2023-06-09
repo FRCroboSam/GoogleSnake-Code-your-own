@@ -68,7 +68,7 @@ public class GameTask {
                 isFirstMove = false; 
             }
         }
-        if((move != currentMove && moveWorks || currentMove == null)){
+        else if((move != currentMove && moveWorks || currentMove == null)){
             currentMove = move; 
             if(oldMove == null){
                 oldMove = move; 
